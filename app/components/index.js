@@ -1,9 +1,17 @@
 import React from 'react';
+import Calendar from './calendar';
 
 var Index = React.createClass({
   render() {
     return (
-      <h1>Index</h1>
+      <div>
+      <form>
+      <input type="number" />
+      <input type="submit"/>
+      <input type="text"/>
+      </form>
+      <Calendar/>
+      </div>
     );
   }
 

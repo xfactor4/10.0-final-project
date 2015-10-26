@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
+import $ from 'jquery';
 
 import App from './components/app';
 import Index from './components/index';

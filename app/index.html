@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <title></title>
 
     {% if (o.htmlWebpackPlugin.files.favicon) { %}
@@ -16,6 +16,8 @@
   <body>
 
     <div id="application"></div>
+
+
 
     <script src="{%=o.htmlWebpackPlugin.files.chunks['app'].entry %}"></script>
   </body>
