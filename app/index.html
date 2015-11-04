@@ -4,20 +4,18 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title></title>
 
     {% if (o.htmlWebpackPlugin.files.favicon) { %}
     <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
     {% } %}
 
-    <script src="{%=o.htmlWebpackPlugin.files.chunks['head'].entry %}"></script>
+    <script src="{%=o.htmlWebpackPlugin.files.chunks['styles'].entry %}"></script>
   </head>
   <body>
 
     <div id="application"></div>
-
-
 
     <script src="{%=o.htmlWebpackPlugin.files.chunks['app'].entry %}"></script>
   </body>

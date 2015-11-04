@@ -1,44 +1,72 @@
-import $ from 'jquery';
-import Backbone from 'backbone';
+import {Forecast, ForecastCollection} from './model/model';
 import _ from 'underscore';
+import Backbone from 'backbone';
+import Session from './model/session';
+import User from './model/user';
+import UsersCollection from './model/user-collection';
 
-let recipes;
 
-$.ajaxSetup({
-  beforeSend(xhr, options) {
-    if(options.url.match(/api.parse.com/)) {
-      xhr.setRequestHeader('X-Parse-Application-Id', 'V9t5d9Zdnw0iz6WwSy3jpLurWPm5Mcl1WAjWRnWm');
-      xhr.setRequestHeader('X-Parse-REST-API-Key', 'SUASfh0sLbx6QVKzZgEVR6jNN1drkdV6svL8dtvA');
+let session = new Session();
+let forecasts = new ForecastCollection();
+let users = new UsersCollection();
+
+var Store = _.extend({}, Backbone.Events, {
+  initialize() {
+    this.listenTo(forecasts, 'add remove change', () => this.trigger('change'));
+    this.listenTo(users, 'add change remove', this.trigger.bind(this, 'change'));
+    this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
+  },
+
+  getForecasts() {
+    return forecasts.toJSON();
+  },
+
+  saveForecast(data,options) {
+    return forecasts.create(data,options);
+  },
+
+
+invalidateSession() {
+    return session.invalidate();
+  },
+
+  authenticateSession(options) {
+    return session.authenticate(options);
+  },
+
+  getSession(){
+    return session.toJSON();
+  },
+
+  restoreSession() {
+    return session.restore();
+  },
+
+  createUser(attributes) {
+    // TODO: this user should become the currentUser, instead of fetching again
+    let user = new User(attributes);
+    return user.save().then(() => {
+      return session.authenticate({sessionToken: user.get('sessionToken')});
+    });
+  },
+
+  saveUser(user, options) {
+    options = _.extend({}, options, {merge: true});
+    return users.create(user, options);
+  },
+
+  // TODO: do something if id doesn't exist
+  getUser(id) {
+    let user = users.get(id);
+    if(user) {
+      return user.toJSON();
+    } else {
+      users.fetch();
+      return {};
     }
-  }
+  },
 });
 
-const Account = Backbone.Model.extend({
-  idAttribute: "objectId",
-  urlRoot: "https://api.parse.com/1/classes/Forecast",
-  defaults: {
+Store.initialize();
 
-      balance: "",
-      income: "",
-      bill: "",
-      totalBalance: ""
-    },
-
-    toJSON(){
-      var result=_.clone(this.attributes);
-      result.id = result.objectId;
-      delete result.objectId;
-      return result;
-    }
-
-});
-
-const SetupCollection = Backbone.Collection.extend({
-  url: "https://api.parse.com/1/classes/Forecast",
-  model: Account,
-  parse(response) {
-    return response.results;
-  }
-});
-
-export default {Account, SetupCollection};
+export default Store;

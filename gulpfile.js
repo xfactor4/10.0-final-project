@@ -7,6 +7,7 @@ var path              = require('path');
 var webpack           = require('webpack');
 var HtmlPlugin        = require('html-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var ModernizrPlugin   = require('modernizr-webpack-plugin');
 var WebpackDevServer  = require('webpack-dev-server');
 
 var param             = require('jquery-param');
@@ -15,7 +16,7 @@ var scssIncludePaths = {
   includePaths: [
     './node_modules/foundation-sites/scss/',
     './node_modules/bourbon/app/assets/stylesheets/',
-    './node_modules/bourbon-neat/app/assets/stylesheets/',
+    './node_modules/bourbon-neat/app/assets/stylesheets/'
   ]
 };
 var scssIncludeParams = decodeURIComponent(param(scssIncludePaths));
@@ -24,16 +25,17 @@ var webpackConfig = {
   context: path.resolve(__dirname, 'app'),
   entry: {
     app: ['./app.js'],
-    head: ['./head.js'],
+    styles: ['./styles/app.scss'],
   },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name]-bundle.js',
-    publicPath: '/'
+    publicPath: './'
   },
 
   plugins: [
+    new ModernizrPlugin({}),
     new HtmlPlugin({
       template: 'app/index.html',
       inject: false
@@ -42,7 +44,7 @@ var webpackConfig = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss'],
-    modulesDirectories: ['app', 'web_modules', 'node_modules']
+    modulesDirectories: ['app', 'public', 'node_modules']
   },
 
   module: {
@@ -54,22 +56,51 @@ var webpackConfig = {
       },
       {
         test: /\.scss$/,
-        loader: "style-loader!css-loader!sass-loader?outputStyle=expanded&" + scssIncludeParams,
-        include: path.resolve(__dirname, 'app', 'styles')
+        loader: "style!css?sourceMap!resolve-url!sass?sourceMap&outputStyle=expanded&" + scssIncludeParams,
+      },
+      {
+        test: /\.css$/,
+        loader: "style!css?sourceMap"
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url?name=images/[name].[ext]&limit=8192',
+        include: path.resolve(__dirname, 'public', 'assets', 'images')
+      },
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/octet-stream"
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file"
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=image/svg+xml"
       }
     ]
   }
 };
 
-var webpackPort = 3000;
+var webpackPort = process.env.PORT || 3000;
 gulp.task("webpack:dev", function(callback) {
   // modify some webpack config options
   var devConfig = Object.create(webpackConfig);
-  devConfig.entry.head.unshift('webpack/hot/dev-server');
+  devConfig.entry.styles.unshift('webpack/hot/dev-server');
   devConfig.entry.app.unshift('webpack/hot/dev-server');
   devConfig.entry.app.unshift('webpack-dev-server/client?http://localhost:' + webpackPort);
   devConfig.devtool = "sourcemap";
   devConfig.debug = true;
+  devConfig.output.publicPath = "http://localhost:" + webpackPort + "/";
   devConfig.plugins = devConfig.plugins.concat(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
