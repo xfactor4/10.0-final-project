@@ -20,6 +20,13 @@ var scssIncludePaths = {
   ]
 };
 var scssIncludeParams = decodeURIComponent(param(scssIncludePaths));
+var cssIncludePaths = {
+ includePaths: [
+   './node_modules/react-bootstrap-daterangepicker/css/'
+ ]
+};
+
+var cssIncludeParams = decodeURIComponent(param(cssIncludePaths));
 
 var webpackConfig = {
   context: path.resolve(__dirname, 'app'),

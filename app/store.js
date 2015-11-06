@@ -4,21 +4,37 @@ import Backbone from 'backbone';
 import Session from './model/session';
 import User from './model/user';
 import UsersCollection from './model/user-collection';
+import {RecurringTransaction, RecurringCollection} from './model/recurring-model';
 
-
+let  RecurringTransactions = new RecurringCollection();
 let session = new Session();
 let forecasts = new ForecastCollection();
 let users = new UsersCollection();
 
+
 var Store = _.extend({}, Backbone.Events, {
   initialize() {
     this.listenTo(forecasts, 'add remove change', () => this.trigger('change'));
+    this.listenTo(RecurringTransactions, 'add remove change', ()=> this.trigger('change'));
     this.listenTo(users, 'add change remove', this.trigger.bind(this, 'change'));
     this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
   },
 
+
+  getRecurringTransactions() {
+    return RecurringTransactions.toJSON();
+  },
+
+
+
   getForecasts() {
     return forecasts.toJSON();
+  },
+
+  saveRecurringTransactions(data, options) {
+
+    return RecurringTransactions.create(data,options);
+
   },
 
   saveForecast(data,options) {

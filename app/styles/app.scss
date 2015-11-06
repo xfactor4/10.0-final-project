@@ -1,5 +1,6 @@
 @import 'bourbon';
 @import 'neat';
+@import "../../node_modules/react-bootstrap-daterangepicker/css/daterangepicker.css";
 
 
 @import '~fullcalendar/dist/fullcalendar.css';
@@ -14,17 +15,21 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     background: transparent;
 }
 
+$grid-columns: 12 !default;
+$gutter: 0 !global;
+
 body {
 margin: 0;
-height: 700px;
+
 }
 
 html, body  {
     max-width: 100%;
     overflow-x: hidden;
-
-
+   height: 100%;
+   min-height: 100%;
 }
+
 
 
 li {
@@ -63,7 +68,7 @@ font-family: sans-serif;
 }
 
 .signup:hover {
-  background-color: rgba(40, 197, 96, 1);
+  background-color: rgba(0, 220, 249, 1);
 }
 
 .signup {
@@ -174,9 +179,11 @@ font-size: 15px;
 }
 
 .login-button:hover {
-  background-color:  rgba(255, 160, 0, 1);
+  background-color:  rgba(0, 220, 249, 1);
   transition: ease-in;
 }
+
+
 
 
 .login-button {
@@ -186,8 +193,9 @@ right: 140px;
   top:380px;
   width: 100px;
   height: 40px;
+  border: rgba(40, 197, 96, 1);
   background-color: rgba(40, 197, 96, 1);
-  border: none;
+
   color: white;
   border-radius: 60px 60px 60px 60px;
 
@@ -196,7 +204,7 @@ z-index: 2;
 }
 
 .signup-button:hover {
-  background-color: rgba(40, 197, 96, 1);
+  background-color: rgba(0, 220, 249, 1);
 }
 
 .signup-button {
@@ -216,7 +224,7 @@ color: white;
 
 .setup-page {
   background: rgba(36, 40, 45, 1);
-  height: 700px;
+  height: 400px;
 }
 
 .SetupForm {
@@ -225,17 +233,17 @@ color: white;
 position: relative;
 top: 100px;
 color: white;
-border: solid 2px rgba(22, 27, 31, 1);
+//border: solid 2px rgba(22, 27, 31, 1);
 font-family: sans-serif;
 @include span-columns(12) ;
-height: 400px;
+height: 450px;
 }
 
 .currentBalance-box {
   text-align: center;
   font-family: sans-serif;
   height: 50px;
-  border-right: solid 2px rgba(22, 27, 31, 1);
+  border: solid 2px rgba(22, 27, 31, 1);
   @include span-columns(4) ;
   height: 400px;
 }
@@ -244,7 +252,8 @@ height: 400px;
   text-align: center;
   font-family: sans-serif;
   height: 50px;
-  border-right: solid 2px rgba(22, 27, 31, 1);
+  border-top: none;
+  border: solid 2px rgba(22, 27, 31, 1);
   @include span-columns(4) ;
   height: 400px;
 }
@@ -253,7 +262,8 @@ height: 400px;
   text-align: center;
   font-family: sans-serif;
   height: 50px;
-  border-right: solid 2px rgba(22, 27, 31, 1);
+  border-top: none;
+  border: solid 2px rgba(22, 27, 31, 1);
   @include span-columns(4) ;
   height: 400px;
 }
@@ -263,10 +273,114 @@ height: 400px;
 .forecast-setup {
   color: rgba(0, 220, 249, 1);
   text-align: center;
-display: block;
+
 height: 20px;
 position: relative;
 top: 80px;
 font-family: sans-serif;
 @include span-columns(12);
+}
+
+.fc {
+  @include span-columns(12);
+  position: relative;
+  top: 100px;
+    background: rgba(36, 41, 46, 1);
+
+}
+
+.fc{
+  color: white;
+
+}
+
+.nameAccount-input {
+  position: relative;
+  top: 3px;
+  left: -50px;
+}
+
+.bankBalance-input{
+  position: relative;
+  top: 12px;
+left: -40px;
+}
+
+.nameLabel {
+  position: relative;
+  top: 20px;
+  display: block;
+  left: -150px;
+  right: 50px;
+}
+
+.amountLabel {
+  position: relative;
+  display: block;
+  top: 30px;
+  left: -145px;
+}
+
+.incomeAmount-label {
+  display: block;
+  position: relative;
+  top: 20px;
+  left: -145px;
+}
+
+.incomeAmount-input {
+  position: relative;
+  top: 0px;
+}
+
+.nameIncome-label {
+  display: block;
+  position: relative;
+  top: 10px;
+  left: -150px;
+}
+
+.nameIncome-input {
+  position: relative;
+  left: 0px;
+  top: -8px;
+}
+
+.select-frequency {
+  position: relative;
+  left: 10px;
+}
+
+.selectIncome-category {
+  position: relative;
+  left: 10px;
+  top: -10px;
+}
+
+.startDate-label {
+  position: relative;
+  left: -155px;
+  display: block;
+  top: 20px;
+}
+
+.start-datepicker {
+  display: block;
+  position: relative;
+  left: 70px;
+  width: 120px;
+}
+
+.endDate-income {
+  position: relative;
+  display: block;
+  left: 20px;
+  top: -18px;
+}
+
+.end-datepicker {
+  position: relative;
+  left: 100px;
+  top: -39px;
+  width: 120px;
 }

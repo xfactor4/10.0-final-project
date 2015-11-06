@@ -1,8 +1,10 @@
 import $ from 'jquery';
 import Backbone from 'backbone';
 import _ from 'underscore';
+import moment from 'moment';
 
-let forecasts;
+
+let RecurringTransactions;
 
 $.ajaxSetup({
   beforeSend(xhr, options) {
@@ -13,12 +15,21 @@ $.ajaxSetup({
   }
 });
 
-const Forecast = Backbone.Model.extend({
-  idAttribute: "objectId",
-  urlRoot: "https://api.parse.com/1/classes/Forecast",
-  defaults: {
-      starting_balance: 0
+var date = moment()
 
+
+const RecurringTransaction = Backbone.Model.extend({
+  idAttribute: "objectId",
+  urlRoot: "https://api.parse.com/1/classes/Recurring_Transactions",
+  defaults: {
+    name: "",
+    category: "",
+
+    startingDate: date.format('DD-MM-YYYY'),
+
+    endingDate: date.format('DD-MM-YYYY'),
+    frequency: 0,
+    amount: 0,
     },
 
     toJSON(){
@@ -30,9 +41,9 @@ const Forecast = Backbone.Model.extend({
 
 });
 
-const ForecastCollection = Backbone.Collection.extend({
-  url: "https://api.parse.com/1/classes/Forecast",
-  model: Forecast,
+const RecurringCollection = Backbone.Collection.extend({
+  url: "https://api.parse.com/1/classes/Recurring_Transactions",
+  model: RecurringTransaction,
   parse(response) {
     return response.results;
   }
@@ -40,4 +51,4 @@ const ForecastCollection = Backbone.Collection.extend({
 
 
 
-export default {Forecast, ForecastCollection};
+export default {RecurringTransaction, RecurringCollection};

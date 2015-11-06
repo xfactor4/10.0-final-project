@@ -6,6 +6,7 @@ import moment from 'moment';
 import range from 'moment-range'
 
 
+
 const Calendar = React.createClass({
 
   mixins: [History],
@@ -22,16 +23,15 @@ const Calendar = React.createClass({
    var range = moment.range(start, end);
    var totalDistance = range.diff('days');
 
-   var events = [];
-   range.by('days', function(day) {
-     var distance = moment.range(start, day).diff('days');
-     // TODO instead of just subtracting, use forecast income and expenses to calculate amount
-     var amount = (Number(forecast.balance) + Number(forecast.income) -Number(forecast.bill)) / distance * distance;
-     events.push({
-       title: "$" + amount,
-       start: day.format('YYYY-MM-DD')
-     });
-   });
+   $.ajax({
+  url: "https://api.parse.com/1/functions/calendar?start=2015-11-01&end=2015-12-06",
+  type: "POST",
+}).then((response) =>{
+  console.log(response);
+  // pass the events and balances to the calendar in here
+var events = response.result.transactions
+
+
 
     $(this.refs.calendar).fullCalendar({
       events: events,
@@ -55,7 +55,9 @@ const Calendar = React.createClass({
 
       }
     });
+    })
   },
+
 
   componentWillUnmount() {
     $(this.refs.calendar).fullCalendar('destroy');

@@ -12,6 +12,9 @@ import Login from './components/login';
 import Signup from './components/signup';
 import Setup from './components/Setup';
 import UpdateForm from './components/update-form';
+import StartingBalance from './components/starting-balance';
+import FixedIncome from './components/fixed-income';
+import FixedExpenses from './components/fixed-expenses';
 
 import store from './store';
 
@@ -35,10 +38,13 @@ ReactDOM.render((
     <Route path="/" component={App}>
     <IndexRoute component={Index} onEnter={requireAuth} />
       <Route path="login" component={Login} onEnter={requireNotAuth} />
+        <Route path="startingBalance" component={StartingBalance}/>
+        <Route path="fixedIncome" component={FixedIncome}/>
+        <Route path="fixedExpenses" component={FixedExpenses}/>
         <Route path="signup" component={Signup} onEnter={requireNotAuth} />
     <Route path="account" component={Setup}/>
 
-  
+
     </Route>
   </Router>
 ), document.getElementById('application'));

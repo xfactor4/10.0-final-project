@@ -5,6 +5,8 @@ import BackboneMixin from '../mixins/backbone';
 import $ from 'jquery';
 import accordion from 'jquery';
 import Calendar from './calendar';
+import DateRangePicker from './daterangepicker';
+
 
 
 
@@ -51,17 +53,29 @@ getModels() {
 <div className="forecast-setup"><h1>FORECAST ACCOUNT SETUP</h1></div>
         <form className="SetupForm" onSubmit={this.handleSubmit}>
      <div className="form-info">
-
     <div className="currentBalance-box">
-         <h4 className="currentBalance">Initial Balance</h4>
-             <input  ref="bankBalance" className="bankBalance-input" type="text"/>
+         <h4 className="currentBalance">INITIAL BALANCE</h4>
+            <p className="input-description">1. Enter the current balance of your account.</p>
+            <label className="nameLabel" for="nameInput">Name:</label>
+             <input className="nameAccount-input" id="nameInput" type="text"></input>
+             <label className="amountLabel" for="bankBalance-input">Amount:</label>
+             <input  ref="bankBalance" className="bankBalance-input" id="bankBalance-input" type="text"></input>
                    </div>
 
 
 
       <div className="incomeBalance-box">
-           <h4 className="income">Income</h4>
-                 <input ref="incomeBalance"className="incomeAmount" type="text"/>
+           <h4 className="income">FIX INCOME</h4>
+              <p className="input-description">1. Enter all of your fixed incomes. Example(salary, rent, etc.)</p>
+                 <label className="nameIncome-label" for="nameIncome-input">Name:</label>
+                    <input ref="incomeBalance" className="nameIncome-input" type="text"></input>
+                         <select name="select" className="selectIncome-category">
+                            <option value="selected">Paycheck</option>
+                               <option>Transfer</option>
+                                  <option>Misc Income</option>
+                                              </select>
+              <label className="incomeAmount-label" for="incomeAmount-input">Amount:</label>
+                 <input ref="incomeBalance"className="incomeAmount-input" type="text"/>
                      <select name="select" className="select-frequency">
                         <option>Bi-Weekly</option>
                            <option>Monthly</option>
@@ -69,29 +83,39 @@ getModels() {
                                   <option>Daily</option>
                                      <option></option>
                                          </select>
+                                         <DateRangePicker></DateRangePicker>
+
                                             </div>
 
       <div className="billBalance-box">
-          <h4>Starting Pay Date</h4>
-                <h4 className="bills">Expenses</h4>
-                <input ref="billBalance" className="billAmount" type="text"/>
-                     <select name="select" className="Frequency">
-                        <option>Bi-Weekly</option>
-                            <option>Monthly</option>
-                              <option value="selected">Yearly</option>
+          <h4>FIXED EXPENSE</h4>
+                <p className="input-description">1. Enter all of your fixed expenses. Example(mortage, phone bill, car insurance, etc.)</p>
+                <label className="nameIncome-label" for="nameIncome-input">Name:</label>
+                   <input ref="billBalance" className="nameIncome-input" type="text"></input>
+                        <select name="select" className="selectIncome-category">
+                           <option value="selected">Paycheck</option>
+                              <option>Transfer</option>
+                                 <option>Misc Income</option>
+                                             </select>
+             <label className="incomeAmount-label" for="incomeAmount-input">Amount:</label>
+                <input ref="incomeBalance"className="incomeAmount-input" type="text"/>
+                    <select name="select" className="select-frequency">
+                       <option>Bi-Weekly</option>
+                          <option>Monthly</option>
+                             <option value="selected">Yearly</option>
                                  <option>Daily</option>
-                                      <option></option>
-                                           </select>
-                                               <input type="date" className="datepicker"/>
+                                    <option></option>
+                                        </select>
+                                        <DateRangePicker></DateRangePicker>
+                                               <button type="submit">Enter</button>
                                                      </div>
 
 
-         
+
 
               </div>
 
     </form>
-
 
    <ul>
 {forecasts.map((x) =>{
