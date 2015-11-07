@@ -2,6 +2,8 @@ import React from 'react';
 import { History } from 'react-router';
 import store from '../store';
 import { Link} from 'react-router';
+var DriveIn = require('react-drive-in');
+var $mountNode = document.getElementById('drive-in');
 
 
 
@@ -34,8 +36,13 @@ const Login = React.createClass({
     })
   },
 
-  render() {
+  render()
+  {
     return (
+      <div><DriveIn
+         show= "../../public/assets/images/sample.mp4"
+         />
+
 
       <div className="loginBackground">
       <form onSubmit={this.handleSubmit}>
@@ -51,6 +58,7 @@ const Login = React.createClass({
       </form>
     <div className="header-overlay"></div>
  </div>
+  </div>
 
 
     )

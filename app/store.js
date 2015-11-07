@@ -4,9 +4,11 @@ import Backbone from 'backbone';
 import Session from './model/session';
 import User from './model/user';
 import UsersCollection from './model/user-collection';
-import {RecurringTransaction, RecurringCollection} from './model/recurring-model';
+import {RecurringIncomeTransaction, RecurringIncomeCollection} from './model/recurring_income';
+import {RecurringExpenseTransaction, RecurringExpenseCollection} from './model/recurring_expense';
 
-let  RecurringTransactions = new RecurringCollection();
+let RecurringIncomeTransactions = new RecurringIncomeCollection();
+let  RecurringExpenseTransactions = new RecurringExpenseCollection();
 let session = new Session();
 let forecasts = new ForecastCollection();
 let users = new UsersCollection();
@@ -15,14 +17,19 @@ let users = new UsersCollection();
 var Store = _.extend({}, Backbone.Events, {
   initialize() {
     this.listenTo(forecasts, 'add remove change', () => this.trigger('change'));
-    this.listenTo(RecurringTransactions, 'add remove change', ()=> this.trigger('change'));
+    this.listenTo(RecurringIncomeTransactions, 'add remove change', ()=> this.trigger('change'));
+    this.listenTo(RecurringExpenseTransactions, 'add remove change', ()=> this.trigger('change'));
     this.listenTo(users, 'add change remove', this.trigger.bind(this, 'change'));
     this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
   },
 
 
-  getRecurringTransactions() {
-    return RecurringTransactions.toJSON();
+  getRecurringIncomeTransactions() {
+    return RecurringIncomeTransactions.toJSON();
+  },
+
+  getRecurringExpenseTransactions() {
+    return RecurringExpenseTransactions.toJSON();
   },
 
 
@@ -31,11 +38,32 @@ var Store = _.extend({}, Backbone.Events, {
     return forecasts.toJSON();
   },
 
-  saveRecurringTransactions(data, options) {
+  saveRecurringIncomeTransactions(data, options) {
 
-    return RecurringTransactions.create(data,options);
+    return RecurringIncomeTransactions.create(data,options);
 
   },
+
+  saveRecurringExpenseTransactions(data, options) {
+
+    return RecurringExpenseTransactions.create(data,options);
+
+  },
+
+
+
+
+  destroyRecurringIncomeTransactions(RecurringIncomeTransaction) {
+    return RecurringExpenseTransactions.get(ReccuringIncomeTransaction.objectId).destroy();
+  },
+
+  destroyRecurringExpenseTransactions(RecurringExpenseTransaction) {
+    return RecurringExpenseTransactions.get(ReccuringExpenseTransaction.objectId).destroy();
+  },
+
+
+
+
 
   saveForecast(data,options) {
     return forecasts.create(data,options);

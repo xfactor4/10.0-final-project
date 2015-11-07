@@ -3,7 +3,8 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import moment from 'moment';
 
-let forecasts;
+
+let RecurringIncomeTransaction;
 
 $.ajaxSetup({
   beforeSend(xhr, options) {
@@ -16,13 +17,19 @@ $.ajaxSetup({
 
 var date = moment()
 
-const Forecast = Backbone.Model.extend({
+
+const RecurringIncome = Backbone.Model.extend({
   idAttribute: "objectId",
-  urlRoot: "https://api.parse.com/1/classes/Forecast",
+  urlRoot: "https://api.parse.com/1/classes/RecurringIncomeTransaction",
   defaults: {
     name: "",
-    starting_balance: 0,
-    starting_balance_date:  date.format('DD-MM-YYYY'),
+    category: "",
+
+    startingDate: date.format('DD-MM-YYYY'),
+
+    endingDate: date.format('DD-MM-YYYY'),
+    frequency: 0,
+    amount: 0,
     },
 
     toJSON(){
@@ -34,9 +41,9 @@ const Forecast = Backbone.Model.extend({
 
 });
 
-const ForecastCollection = Backbone.Collection.extend({
-  url: "https://api.parse.com/1/classes/Forecast",
-  model: Forecast,
+const RecurringIncomeCollection = Backbone.Collection.extend({
+  url: "https://api.parse.com/1/classes/RecurringIncomeTransaction",
+  model: RecurringIncome,
   parse(response) {
     return response.results;
   }
@@ -44,4 +51,4 @@ const ForecastCollection = Backbone.Collection.extend({
 
 
 
-export default {Forecast, ForecastCollection};
+export default {RecurringIncomeTransaction, RecurringIncomeCollection};

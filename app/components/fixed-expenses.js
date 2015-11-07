@@ -18,7 +18,7 @@ var FixedExpenses = React.createClass({
 
   getModels() {
     return {
-      RecurringTransactions: store.getRecurringTransactions()
+      RecurringExpenseTransactions: store.getRecurringExpenseTransactions()
     }
   },
 
@@ -26,12 +26,12 @@ var FixedExpenses = React.createClass({
 handleSubmit (e) {
    e.preventDefault();
 
-store.saveRecurringTransactions({name: this.refs.name.value, startingDate: Date(this.refs.startingDate.value), endingDate:Date( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(-this.refs.amount.value), category: this.refs.category.value})
+store.saveRecurringExpenseTransactions({name: this.refs.name.value, startingDate: Date(this.refs.startingDate.value), endingDate:Date( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(-this.refs.amount.value), category: this.refs.category.value})
     this.history.replaceState(null,'/fixedExpenses')
   },
 
   render (){
-    var RecurringTransactions = this.state.RecurringTransactions;
+    var RecurringExpenseTransactions = this.state.RecurringExpenseTransactions;
     return(
       <form className="SetupForm" onSubmit={this.handleSubmit}>
       <div className="incomeBalance-box">

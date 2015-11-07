@@ -44,6 +44,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "react-bootstrap-daterangepicker": "^1.0.4"
+    "react-bootstrap-daterangepicker": "^1.0.4",
+    "react-drive-in": "^1.6.2"
   }
 }

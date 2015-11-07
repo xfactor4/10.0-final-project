@@ -4,7 +4,7 @@ import _ from 'underscore';
 import moment from 'moment';
 
 
-let RecurringTransactions;
+let RecurringExpenseTransaction;
 
 $.ajaxSetup({
   beforeSend(xhr, options) {
@@ -18,9 +18,9 @@ $.ajaxSetup({
 var date = moment()
 
 
-const RecurringTransaction = Backbone.Model.extend({
+const RecurringExpense = Backbone.Model.extend({
   idAttribute: "objectId",
-  urlRoot: "https://api.parse.com/1/classes/Recurring_Transactions",
+  urlRoot: "https://api.parse.com/1/classes/RecurringExpenseTransaction",
   defaults: {
     name: "",
     category: "",
@@ -41,9 +41,9 @@ const RecurringTransaction = Backbone.Model.extend({
 
 });
 
-const RecurringCollection = Backbone.Collection.extend({
-  url: "https://api.parse.com/1/classes/Recurring_Transactions",
-  model: RecurringTransaction,
+const RecurringExpenseCollection = Backbone.Collection.extend({
+  url: "https://api.parse.com/1/classes/RecurringExpenseTransaction",
+  model: RecurringExpense,
   parse(response) {
     return response.results;
   }
@@ -51,4 +51,4 @@ const RecurringCollection = Backbone.Collection.extend({
 
 
 
-export default {RecurringTransaction, RecurringCollection};
+export default {RecurringExpenseTransaction, RecurringExpenseCollection};

@@ -26,7 +26,7 @@ var StartingBalance = React.createClass({
   handleSubmit (e) {
      e.preventDefault();
 
-  store.saveForecast({starting_balance: Number(this.refs.bankBalance.value)})
+  store.saveForecast({starting_balance: Number(this.refs.bankBalance.value), name: this.refs.name.value, starting_balance_date: Date(this.refs.startingBalanceDate)})
       this.history.replaceState(null,'/fixedIncome')
     },
 
@@ -36,17 +36,21 @@ var StartingBalance = React.createClass({
       <div className="setup-page">
   <div className="forecast-setup"><h1>FORECAST ACCOUNT SETUP</h1></div>
           <form className="SetupForm" onSubmit={this.handleSubmit}>
+
        <div className="form-info">
       <div className="currentBalance-box">
            <h4 className="currentBalance">INITIAL BALANCE</h4>
               <p className="input-description">1. Enter the current balance of your account.</p>
               <label className="nameLabel" for="nameInput">Name:</label>
-               <input className="nameAccount-input" id="nameInput" type="text"></input>
+               <input className="nameAccount-input" ref="name" id="nameInput" type="text"></input>
                <label className="amountLabel" for="bankBalance-input">Amount:</label>
                <input  ref="bankBalance" className="bankBalance-input" id="bankBalance-input" type="text"></input>
+               <label className="StartingBalanceDate" for="starting_balance_date">Choose Date</label>
+               <input ref="starting_balance_date" className="starting_balance_date" type="date"></input>
                        <button type="submit">Enter</button>
                </div>
                </div>
+                <div className="form-list"></div>
                </form>
 
                      </div>

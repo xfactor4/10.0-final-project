@@ -4,8 +4,10 @@ import store from '../store';
 import { History } from 'react-router';
 import { Link} from 'react-router';
 import BackboneMixin from '../mixins/backbone';
+import IncomeList from './income-list';
 
 var FixedIncome = React.createClass({
+
 
   mixins: [ History ],
 
@@ -18,7 +20,7 @@ var FixedIncome = React.createClass({
 
   getModels() {
     return {
-      RecurringTransactions: store.getRecurringTransactions()
+      RecurringIncomeTransactions: store.getRecurringIncomeTransactions()
     }
   },
 
@@ -26,13 +28,14 @@ var FixedIncome = React.createClass({
 handleSubmit (e) {
    e.preventDefault();
 
-store.saveRecurringTransactions({name: this.refs.name.value, startingDate: Date(this.refs.startingDate.value), endingDate:Date( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(this.refs.amount.value), category: this.refs.category.value})
-    this.history.replaceState(null,'/fixedExpenses')
+store.saveRecurringIncomeTransactions({name: this.refs.name.value, startingDate: Date(this.refs.startingDate.value), endingDate:Date( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(this.refs.amount.value), category: this.refs.category.value})
+this.history.replaceState(null,'/fixedExpenses')
   },
 
   render (){
-    var RecurringTransactions = this.state.RecurringTransactions;
+    var RecurringIncomeTransactions = this.state.RecurringIncomeTransactions;
     return(
+     <div className="income-list">
       <form className="SetupForm" onSubmit={this.handleSubmit}>
       <div className="incomeBalance-box">
            <h4 className="income">FIX INCOME</h4>
@@ -58,7 +61,8 @@ store.saveRecurringTransactions({name: this.refs.name.value, startingDate: Date(
                                                <button type="submit">Enter</button>
                                             </div>
                                         </form>
-
+                 <IncomeList/>
+                 </div>
     )
   }
 });
