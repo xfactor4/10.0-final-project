@@ -41,13 +41,13 @@ var StartingBalance = React.createClass({
       <div className="currentBalance-box">
            <h4 className="currentBalance">INITIAL BALANCE</h4>
               <p className="input-description">1. Enter the current balance of your account.</p>
-              <label className="nameLabel" for="nameInput">Name:</label>
-               <input className="nameAccount-input" ref="name" id="nameInput" type="text"></input>
-               <label className="amountLabel" for="bankBalance-input">Amount:</label>
+              <label className="nameLabel" for="nameAccount-input">Account Name</label>
+               <input className="nameAccount-input" ref="name"  type="text" placeholder="Account Name"></input>
+               <label className="amountLabel" for="bankBalance-input">Amount</label>
                <input  ref="bankBalance" className="bankBalance-input" id="bankBalance-input" type="text"></input>
-               <label className="StartingBalanceDate" for="starting_balance_date">Choose Date</label>
+               <label className="StartingBalanceDate" for="starting_balance_date">Account Balance Start Date</label>
                <input ref="starting_balance_date" className="starting_balance_date" type="date"></input>
-                       <button type="submit">Enter</button>
+                       <button className="initialAccountSubmit"type="submit">SUBMIT</button>
                </div>
                </div>
                 <div className="form-list"></div>

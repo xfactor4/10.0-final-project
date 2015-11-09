@@ -29,25 +29,25 @@ handleSubmit (e) {
    e.preventDefault();
 
 store.saveRecurringIncomeTransactions({name: this.refs.name.value, startingDate: Date(this.refs.startingDate.value), endingDate:Date( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(this.refs.amount.value), category: this.refs.category.value})
-this.history.replaceState(null,'/fixedExpenses')
+ this.history.replaceState(null,'/fixedExpenses')
   },
 
   render (){
     var RecurringIncomeTransactions = this.state.RecurringIncomeTransactions;
     return(
      <div className="income-list">
-      <form className="SetupForm" onSubmit={this.handleSubmit}>
+      <form className="IncomeSetupForm" onSubmit={this.handleSubmit}>
       <div className="incomeBalance-box">
            <h4 className="income">FIX INCOME</h4>
-              <p className="input-description">1. Enter all of your fixed incomes for the account. Example(salary, rent, etc.)</p>
-                 <label className="nameIncome-label" for="nameIncome-input">Name:</label>
+              <p className="income-description">1. Enter all of your fixed incomes for the account. Example(salary, rent, etc.)</p>
+                 <label className="nameIncome-label" for="nameIncome-input">Name</label>
                     <input ref="name" className="nameIncome-input" type="text"></input>
                          <select name="select" ref="category" className="selectIncome-category">
                             <option>Paycheck</option>
                                <option>Transfer</option>
                                   <option>Misc Income</option>
                                               </select>
-              <label className="incomeAmount-label" for="incomeAmount-input">Amount:</label>
+              <label className="incomeAmount-label" for="incomeAmount-input">Amount</label>
                  <input ref="amount"className="incomeAmount-input" type="text"/>
                      <select ref="frequency" name="select" className="select-frequency">
                         <option>7</option>
@@ -56,10 +56,13 @@ this.history.replaceState(null,'/fixedExpenses')
                                   <option>Daily</option>
                                      <option></option>
                                          </select>
-                                         <input type="date" ref="startingDate"></input>
-                                         <input type="date" ref="endingDate"></input>
-                                               <button type="submit">Enter</button>
+                                          <label className="StartIncome" for="startingIncomeDate">Income Start Date</label>
+                                         <input type="date" className="startingIncomeDate" ref="startingDate"></input>
+                                         <label className="EndIncome" for="endingIncomeDate">Income End Date</label>
+                                         <input type="date" className="endingIncomeDate" ref="endingDate"></input>
+                                               <button className="SaveIncome" type="submit">Save</button>
                                             </div>
+
                                         </form>
                  <IncomeList/>
                  </div>
