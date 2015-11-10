@@ -5,6 +5,9 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
 @import url(https://fonts.googleapis.com/css?family=Cabin:400,500);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,200);
+@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 @import '~fullcalendar/dist/fullcalendar.css';
 
@@ -317,12 +320,18 @@ font-size: 30px;
   @include span-columns(12);
   position: relative;
   top: 100px;
-    background: rgba(36, 41, 46, 1);
 
+font-family: "Raleway" sans-serif;
+font-weight: 200;
 }
 
+
+
+
+
+
 .fc{
-  color: white;
+
 
 }
 
@@ -418,7 +427,7 @@ height: 50px;
 position: relative;
 top: -20px;
 box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
-font-family: "Cabin" sans-serif;
+font-family: "Raleway" sans-serif;
 font-size: 20px;
 color: white;
 border-top-left-radius: 10px;
@@ -535,6 +544,9 @@ height: 33px;
 width: 300px;
 }
 
+.SaveIncome:hover {
+  background-color: rgba(10, 16, 35, 1);
+}
 
 .SaveIncome {
   position: relative;
@@ -559,7 +571,7 @@ height: 50px;
 position: relative;
 top: 0px;
 box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
-font-family: "Cabin" sans-serif;
+font-family: "Raleway" sans-serif;
 font-size: 20px;
 color: white;
 border-top-left-radius: 10px;
@@ -590,4 +602,178 @@ border-radius: 10px 10px 10px 10px;
 border-style: outset;
 font-family: sans-serif;
 height: 500px;
+}
+
+.expenseBalance-box {
+  text-align: center;
+  font-family: "Oswald" sans-serif;
+  @include span-columns(12) ;
+  height: 500px;
+  border: none;
+  position: relative;
+  left: 30px;
+  top: 19px;
+  direction: block;
+}
+
+.expense {
+  background: rgba(33, 207, 110, 1);
+  @include span-columns(12) ;
+height: 50px;
+position: relative;
+top: -20px;
+box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
+font-family: "Raleway" sans-serif;
+font-size: 20px;
+color: white;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+text-align: center;
+padding-top: 13px;
+left: -30px;
+}
+
+.nameExpense-label {
+  display: block;
+  position: relative;
+  top: 20px;
+  left: -260px;
+}
+
+.nameExpense-input {
+  position: relative;
+  left: -85px;
+  top: 25px;
+  height: 33px;
+  width: 300px;
+}
+
+.selectExpense-category {
+  position: relative;
+  left: -40px;
+  top: 24px;
+  height: 33px;
+  width: 100px;
+  border-radius: 0;
+  font-family: 'Oswald' sans-serif;
+}
+
+.expenseAmount-label {
+  display: block;
+  position: relative;
+  top: 40px;
+  left: -252px;
+}
+
+.expenseAmount-input {
+  position: relative;
+  top: 50px;
+  left: -27px;
+  height: 33px;
+  width: 300px;
+}
+
+.selectExpense-frequency {
+  position: relative;
+  left: 18px;
+  top: 50px;
+height: 33px;
+border-radius: 0;
+width: 100px;
+}
+
+.startingExpense {
+  position: relative;
+  top: 100px;
+  left: -420px;
+}
+
+.endingExpense {
+  position: relative;
+  top: 118px;
+left: -225px;
+}
+
+.startingExpenseDate {
+  display: block;
+  position: relative;
+  left: 17px;
+  width: 300px;
+  top: 100px;
+height: 33px;
+}
+
+.endingExpenseDate {
+  display:  block;
+  position: relative;
+  left: 20px;
+  top: 130px;
+height: 33px;
+width: 300px;
+}
+
+.SaveExpense:hover {
+  background-color: rgba(10, 16, 35, 1);
+}
+
+.SaveExpense {
+  position: relative;
+  top: 140px;
+  left: -40px;
+  border-radius: 0;
+  background-color: rgba(51, 61, 70, 1);
+  color: white;
+  border: none;
+  font-weight: 600;
+  height: 40px;
+  width: 90px;
+  box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
+  border-radius: 10px 10px 10px 10px;
+  font-family: "Open Sans" sans-serif;
+}
+
+.ExpenseSetupForm {
+  @include span-columns(6);
+    background: rgba(250, 250, 250, 1);
+    width: 600px;
+  position: relative;
+  top: 200px;
+  color: black;
+  left: 80px;
+  box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
+  border-radius: 10px 10px 10px 10px;
+  border-style: outset;
+  font-family: sans-serif;
+  height: 500px;
+}
+
+.expense-description {
+  font-family: 'Oswald' sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  border-bottom: 2px solid rgba(241, 241, 241, 1);
+position: relative;
+left: -30px;
+}
+
+.transactionModal {
+  background: rgba(33, 207, 110, 1);
+  @include span-columns(12) ;
+height: 50px;
+position: relative;
+top: -44px;
+box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
+font-family: "Raleway" sans-serif;
+font-size: 20px;
+color: white;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+text-align: center;
+padding-top: 13px;
+left: -15px;
+width: 598px;
+}
+
+.closeButton {
+  z-index: 2;
 }

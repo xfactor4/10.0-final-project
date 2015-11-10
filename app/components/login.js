@@ -39,9 +39,7 @@ const Login = React.createClass({
   render()
   {
     return (
-      <div><DriveIn
-         show= "../../public/assets/images/sample.mp4"
-         />
+
 
 
       <div className="loginBackground">
@@ -58,7 +56,7 @@ const Login = React.createClass({
       </form>
     <div className="header-overlay"></div>
  </div>
-  </div>
+
 
 
     )

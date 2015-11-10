@@ -28,14 +28,16 @@ var FixedIncome = React.createClass({
 handleSubmit (e) {
    e.preventDefault();
 
-store.saveRecurringIncomeTransactions({name: this.refs.name.value, startingDate: Date(this.refs.startingDate.value), endingDate:Date( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(this.refs.amount.value), category: this.refs.category.value})
+store.saveRecurringIncomeTransactions({name: this.refs.name.value, startingDate: (this.refs.startingDate.value), endingDate: ( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(this.refs.amount.value), category: this.refs.category.value})
  this.history.replaceState(null,'/fixedExpenses')
   },
 
   render (){
     var RecurringIncomeTransactions = this.state.RecurringIncomeTransactions;
     return(
+
      <div className="income-list">
+           <div className="forecast-setup"><h1>FORECAST ACCOUNT SETUP</h1></div>
       <form className="IncomeSetupForm" onSubmit={this.handleSubmit}>
       <div className="incomeBalance-box">
            <h4 className="income">FIX INCOME</h4>

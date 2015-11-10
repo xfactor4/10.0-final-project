@@ -4,10 +4,19 @@ import fullcalendar from 'fullcalendar';
 import {History} from 'react-router';
 import moment from 'moment';
 import range from 'moment-range'
+import {Modal, Button} from 'react-bootstrap';
+
 
 
 
 const Calendar = React.createClass({
+
+  getInitialState() {
+    return {
+      showModal: false
+    }
+
+  },
 
   mixins: [History],
   componentDidMount() {
@@ -34,12 +43,18 @@ var events = response.result.transactions
 
 
     $(this.refs.calendar).fullCalendar({
+      eventLimit: true, // for all non-agenda views
+   views: {
+       month: {
+           eventLimit: 4 // adjust to 6 only for agendaWeek/agendaDay
+       }
+   },
       events: events,
       header: {
 
-         left: 'prev,next today',
-         center: 'title',
-         right: 'month,agendaWeek,agendaDay'
+         left: 'title',
+         center: 'month, agendaWeek, agendaDay',
+         right: 'prev,next today'
       },
 
       selectHelper: true,
@@ -51,13 +66,19 @@ var events = response.result.transactions
      allDay: true,
 
       dayClick: (date) => {
-        this.history.pushState(null,  '/UpdateForm/' + date.format());
+        this.showModal()
 
       }
     });
     })
   },
+showModal () {
+  this.setState({showModal: true})
+},
 
+close() {
+  this.setState({showModal: false})
+},
 
   componentWillUnmount() {
     $(this.refs.calendar).fullCalendar('destroy');
@@ -66,7 +87,24 @@ var events = response.result.transactions
   render() {
 
     return (
-      <div className="Calendar" ref="calendar">
+      <div>
+      <div className="Calendar" ref="calendar">  </div>
+      <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton className="closeButton">
+              <Modal.Title><h4 className="transactionModal">Transactions</h4></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h4>Text in a modal</h4>
+
+
+              <hr />
+
+
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.close}>Close</Button>
+            </Modal.Footer>
+          </Modal>
 
 
       </div>
