@@ -26,7 +26,7 @@ var StartingBalance = React.createClass({
   handleSubmit (e) {
      e.preventDefault();
 
-  store.saveForecast({starting_balance: Number(this.refs.bankBalance.value), name: this.refs.name.value, starting_balance_date: Date(this.refs.startingBalanceDate)})
+  store.saveForecast({starting_balance: Number(this.refs.bankBalance.value), name: this.refs.name.value, starting_balance_date: (this.refs.startingBalanceDate)})
       this.history.replaceState(null,'/fixedIncome')
     },
 

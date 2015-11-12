@@ -44,8 +44,8 @@ const Login = React.createClass({
 
       <div className="loginBackground">
       <form onSubmit={this.handleSubmit}>
-      <h1 className="attention-graber">MAKE THE MOST OF YOUR MONEY</h1>
-        <h2 className="login-title">Login</h2>
+      <h1 className="appTitle">CA$HFLOW</h1>
+        <h2 className="attention-graber">MAKE EVERY DOLLAR COUNT</h2>
         <input ref="email" type="email" className="login-email" placeholder="email" />
         <input type="password" ref="password" className="login-password" placeholder="password" />
         <button type="submit" className="login-button">LOGIN</button>

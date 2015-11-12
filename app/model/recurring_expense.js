@@ -25,9 +25,9 @@ const RecurringExpense = Backbone.Model.extend({
     name: "",
     category: "",
 
-    startingDate: date.format('DD-MM-YYYY'),
+    startingDate: moment().toISOString(),
 
-    endingDate: date.format('DD-MM-YYYY'),
+    endingDate:moment().toISOString(),
     frequency: 0,
     amount: 0,
     },
@@ -36,6 +36,7 @@ const RecurringExpense = Backbone.Model.extend({
       var result=_.clone(this.attributes);
       result.id = result.objectId;
       delete result.objectId;
+      result.date=moment(new Date (result.date)).toISOString();
       return result;
     }
 

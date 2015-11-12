@@ -32,8 +32,8 @@ var App = React.createClass({
       <div>
         <nav className="top-bar" data-topbar role="navigation">
           <ul className="title-area">
-            <li className="home"><IndexLink to="/">Home </IndexLink></li>
-            <li className="account"><Link to="/account">Account</Link></li>
+            <li className="home"><IndexLink to="/">HOME </IndexLink></li>
+            <li className="account"><Link to="/account">ACCOUNT</Link></li>
               <button type="submit" className="signup"><Link to="/signup">SIGN UP</Link></button>
           </ul>
 
@@ -42,10 +42,10 @@ var App = React.createClass({
                       <ul className="right">
                             {loggedIn &&
                             <li className="has-dropdown">
-                              <a>{username}</a>
+                              <a className="username">{username}</a>
                               <ul className="dropdown">
-                                <li><Link to="/profile">Profile</Link></li>
-                                <li><a onClick={this.handleLogout}>Logout</a></li>
+                                <li className="dashboard"><Link to="/profile">DASHBOARD</Link></li>
+                                <li className="logout"><a onClick={this.handleLogout}>Logout</a></li>
                               </ul>
                             </li>
                             }

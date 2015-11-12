@@ -6,7 +6,9 @@ import User from './model/user';
 import UsersCollection from './model/user-collection';
 import {RecurringIncomeTransaction, RecurringIncomeCollection} from './model/recurring_income';
 import {RecurringExpenseTransaction, RecurringExpenseCollection} from './model/recurring_expense';
+import {IncomeTransaction, IncomeTransactionCollection} from './model/transactions';
 
+let IncomeTransactions = new IncomeTransactionCollection();
 let RecurringIncomeTransactions = new RecurringIncomeCollection();
 let  RecurringExpenseTransactions = new RecurringExpenseCollection();
 let session = new Session();
@@ -19,8 +21,13 @@ var Store = _.extend({}, Backbone.Events, {
     this.listenTo(forecasts, 'add remove change', () => this.trigger('change'));
     this.listenTo(RecurringIncomeTransactions, 'add remove change', ()=> this.trigger('change'));
     this.listenTo(RecurringExpenseTransactions, 'add remove change', ()=> this.trigger('change'));
+    this.listenTo(IncomeTransactions, 'add remove change',()=> this.trigger('change'));
     this.listenTo(users, 'add change remove', this.trigger.bind(this, 'change'));
     this.listenTo(session, 'change', this.trigger.bind(this, 'change'));
+  },
+
+  getIncomeTransactions() {
+    return IncomeTransactions.toJSON();
   },
 
 
@@ -38,6 +45,10 @@ var Store = _.extend({}, Backbone.Events, {
     return forecasts.toJSON();
   },
 
+  saveIncomeTransactions(data,options){
+    return IncomeTransactions.create(data, options);
+  },
+
   saveRecurringIncomeTransactions(data, options) {
 
     return RecurringIncomeTransactions.create(data,options);
@@ -51,10 +62,13 @@ var Store = _.extend({}, Backbone.Events, {
   },
 
 
+destroyIncomeTransactions(IncomeTransaction) {
+  return IncomeTransactions.get(IncomeTransaction.objectId).destroy();
+},
 
 
   destroyRecurringIncomeTransactions(RecurringIncomeTransaction) {
-    return RecurringExpenseTransactions.get(ReccuringIncomeTransaction.objectId).destroy();
+    return RecurringIncomeTransactions.get(RecurringIncomeTransaction.objectId).destroy();
   },
 
   destroyRecurringExpenseTransactions(RecurringExpenseTransaction) {

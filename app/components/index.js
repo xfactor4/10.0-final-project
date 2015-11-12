@@ -1,4 +1,5 @@
 import React from 'react';
+import Calendar from './calendar';
 import Setup from './Setup';
 
 var Index = React.createClass({
@@ -9,7 +10,9 @@ var Index = React.createClass({
     return (
 
       <div>
-      <Setup/>
+
+      <Calendar/>
+
       </div>
     );
   }

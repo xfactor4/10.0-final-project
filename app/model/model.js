@@ -22,13 +22,14 @@ const Forecast = Backbone.Model.extend({
   defaults: {
     name: "",
     starting_balance: 0,
-    starting_balance_date:  date.format('DD-MM-YYYY'),
+    starting_balance_date:  moment().toISOString(),
     },
 
     toJSON(){
       var result=_.clone(this.attributes);
       result.id = result.objectId;
       delete result.objectId;
+      result.date=moment(new Date (result.date)).toISOString();
       return result;
     }
 

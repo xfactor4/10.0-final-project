@@ -25,12 +25,16 @@ var FixedIncome = React.createClass({
   },
 
 
-handleSubmit (e) {
+handleSave (e) {
    e.preventDefault();
 
 store.saveRecurringIncomeTransactions({name: this.refs.name.value, startingDate: (this.refs.startingDate.value), endingDate: ( this.refs.endingDate.value), frequency: Number(this.refs.frequency.value), amount: Number(this.refs.amount.value), category: this.refs.category.value})
- this.history.replaceState(null,'/fixedExpenses')
+
   },
+
+
+
+
 
   render (){
     var RecurringIncomeTransactions = this.state.RecurringIncomeTransactions;
@@ -38,7 +42,7 @@ store.saveRecurringIncomeTransactions({name: this.refs.name.value, startingDate:
 
      <div className="income-list">
            <div className="forecast-setup"><h1>FORECAST ACCOUNT SETUP</h1></div>
-      <form className="IncomeSetupForm" onSubmit={this.handleSubmit}>
+      <form className="IncomeSetupForm" onSubmit={this.handleSave}>
       <div className="incomeBalance-box">
            <h4 className="income">FIX INCOME</h4>
               <p className="income-description">1. Enter all of your fixed incomes for the account. Example(salary, rent, etc.)</p>
@@ -53,9 +57,9 @@ store.saveRecurringIncomeTransactions({name: this.refs.name.value, startingDate:
                  <input ref="amount"className="incomeAmount-input" type="text"/>
                      <select ref="frequency" name="select" className="select-frequency">
                         <option>7</option>
-                           <option>Monthly</option>
+                           <option>30</option>
                               <option value="selected">Yearly</option>
-                                  <option>Daily</option>
+                                  <option>14</option>
                                      <option></option>
                                          </select>
                                           <label className="StartIncome" for="startingIncomeDate">Income Start Date</label>
