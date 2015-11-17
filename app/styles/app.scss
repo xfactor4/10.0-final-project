@@ -150,6 +150,25 @@ z-index: 1;
 
 }
 
+
+
+.signup-title {
+  z-index: 3;
+  color: white;
+  position: relative;
+  left: 490px;
+  top: 130px;
+  font-family: 'Raleway' sans-serif;
+}
+
+.header-overlaySignup {
+  background: rgba(50, 69, 84, 0.65);
+height: 912px;
+position: relative;
+bottom: 300px;
+z-index: 1;
+}
+
 .loginBackground {
 background-image: url("../../public/assets/images/phone-guy.jpg");
 background-size: cover;
@@ -174,7 +193,7 @@ z-index: -2;
 .appTitle {
   display: block;
   position: relative;
-  left: 300px;
+  left: 310px;
   top: 120px;
 color: white;
   width: 800px;
@@ -187,7 +206,7 @@ color: white;
 .attention-graber {
   display: block;
   position: relative;
-  left: 320px;
+  left: 340px;
   top: 120px;
 color: rgba(2, 209, 106, 1);
   width: 800px;
@@ -493,7 +512,7 @@ height: 500px;
   @include span-columns(12) ;
 height: 50px;
 position: relative;
-top: -20px;
+top: -30px;
 box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
 font-family: "Raleway" sans-serif;
 font-size: 20px;
@@ -503,6 +522,39 @@ border-top-right-radius: 10px;
 text-align: center;
 padding-top: 13px;
 left: -30px;
+}
+
+.cashflow {
+  background: rgba(33, 207, 110, 1);
+  @include span-columns(12) ;
+height: 50px;
+position: relative;
+top: -30px;
+box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
+font-family: "Raleway" sans-serif;
+font-size: 20px;
+color: white;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+text-align: center;
+padding-top: 13px;
+left: -30px;
+width: 900px;
+}
+
+.cashflow-form {
+  @include span-columns(6);
+    background: rgba(250, 250, 250, 1);
+    width: 900px;
+  position: relative;
+  top: 150px;
+  color: black;
+  left: 180px;
+  box-shadow: 0px 2px 2px 1px rgba(58, 58, 58, 0.2);
+  border-radius: 10px 10px 10px 10px;
+  border-style: outset;
+  font-family: sans-serif;
+  height: 500px;
 }
 
 .incomeBalance-box {
@@ -649,6 +701,36 @@ margin-left: 20px;
 
 margin-left: 20px;
 }
+
+.nameAccount {
+  display: inline-block;
+position: relative;
+left: 00px;
+bottom: 120px;
+}
+
+.StartingBalance   {
+  position: relative;
+  top: 20px;
+}
+
+.StartBalance {
+  position: relative;
+  top: 50px;
+}
+.DateAccount {
+  position: relative;
+  top: 60px;
+}
+
+.amountAccount {
+  display: inline-block;
+position: relative;
+left: 0px;
+bottom: 80px;
+  color: green;
+}
+
 
 .categoryList {
     display: inline-block;

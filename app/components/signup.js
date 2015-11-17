@@ -39,7 +39,7 @@ const Signup = React.createClass({
     return (
         <div className="signupBackground">
       <form onSubmit={this.handleSubmit}>
-        <h1>Sign Up</h1>
+        <h1 className="signup-title">Sign Up</h1>
         <input ref="email" type="email" className="login-email" placeholder="email" />
         <input type="password" ref="password"  className="login-password" placeholder="password" />
         <button  className="signup-button" type="submit">CREATE PROFILE</button>
@@ -47,7 +47,7 @@ const Signup = React.createClass({
           <p>{this.state.error}</p>
         )}
       </form>
-      <div className="header-overlay"></div>
+      <div className="header-overlaySignup"></div>
       </div>
 
     )

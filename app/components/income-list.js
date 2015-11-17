@@ -47,7 +47,7 @@ handleDestroy(e) {
         <li key={r.objectId}>
 
         <p className="nameList">{r.name}</p><p className="categoryList">{r.category}</p><p className="amountList">${r.amount.toFixed(2)}</p>
-         <button className="alert" onClick={this.handleDestroy}>Destroy</button>
+      
         </li>
 
       );
